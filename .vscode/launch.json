@@ -1,0 +1,171 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(benchmark) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl/wolfcrypt/benchmark/.libs/lt-benchmark",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl/wolfcrypt/benchmark",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(clang++) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/opt/llvm/bin/clang++",
+            "args": [
+                "trusted/Wolfssl_Enclave_t.o",
+                "trusted/Wolfssl_Enclave.o",
+                "-o",
+                "Wolfssl_Enclave.so",
+                "-m64",
+                "-O0",
+                "-g",
+                "-DSGX_DEBUG",
+                "-Wl,--no-undefined",
+                "-nostdlib",
+                "-nodefaultlibs",
+                "-nostartfiles",
+                "-L/home/leone/文档/linux-sgx/SGXSan/output",
+                "-L/opt/intel/sgxsdk/lib64",
+                "-L../wolfssl/IDE/LINUX-SGX/",
+                "-lwolfssl.sgx.static.lib",
+                "-Wl,--whole-archive",
+                "-lSGXSanRTEnclave",
+                "-lsgx_trts",
+                "-Wl,--no-whole-archive",
+                "-Wl,--start-group",
+                "-lsgx_tstdc",
+                "-lsgx_tcxx",
+                "-lsgx_pthread",
+                "-lsgx_tcrypto",
+                "-lsgx_tservice",
+                "-Wl,--end-group",
+                "-Wl,-Bstatic",
+                "-Wl,-Bsymbolic",
+                "-Wl,--no-undefined",
+                "-Wl,-pie,-eenclave_entry",
+                "-Wl,--export-dynamic",
+                "-Wl,--defsym,__ImageBase=0",
+                "-Wl,--version-script=trusted/Wolfssl_Enclave.lds",
+                "-fuse-ld=lld",
+                "-Wl,-mllvm=-load=/home/leone/文档/linux-sgx/SGXSan/output/libSensitiveLeakSanPass.so",
+                "-Wl,-mllvm=-load=/home/leone/文档/linux-sgx/SGXSan/output/libSGXSanPass.so"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/leone/文档/SGX_APP/wolfssl-all/wolfssl-example-sgx",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                },
+                {
+                    "text": "-gdb-set follow-fork-mode child"
+                }
+            ]
+        },
+        {
+            "name": "(server) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl-example-sgx/App",
+            "args": [
+                "-s"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl-example-sgx",
+            "environment": [],
+            "externalConsole": false,
+            "miDebuggerPath": "/opt/intel/sgxsdk/bin/sgx-gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(client) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/leone/文档/SGX_APP/wolfssl-all/wolfssl-example-sgx/App",
+            "args": [
+                "-c"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/leone/文档/SGX_APP/wolfssl-all/wolfssl-example-sgx",
+            "environment": [],
+            "externalConsole": false,
+            // "MIMode": "gdb",
+            "miDebuggerPath": "/opt/intel/sgxsdk/bin/sgx-gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(-b) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl-example-sgx/App",
+            "args": [
+                "-b"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/chenliheng/Documents/SGX_APP/wolfssl-all/wolfssl-example-sgx",
+            "environment": [],
+            "externalConsole": false,
+            "miDebuggerPath": "/opt/intel/sgxsdk/bin/sgx-gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

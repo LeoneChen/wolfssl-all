@@ -1,0 +1,3 @@
+vtune
+*.log
+.vscode/settings.json
